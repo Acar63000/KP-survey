@@ -65,7 +65,7 @@
                 <label for="pseudo" class="block text-base font-bold text-slate-900">
                     What is your username? <span class="text-purple-600">*</span>
                 </label>
-                <input type="text" id="pseudo" required 
+                <input type="text" id="pseudo" name="pseudo" required 
                     class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus-ring text-base font-medium transition-all"
                     placeholder="e.g., Robsi">
             </div>
@@ -152,23 +152,23 @@
                         </div>
                     </div>
 
-                    <!-- Question 4: Discord -->
+                    <!-- Question 4: Communication / Community -->
                     <div class="space-y-3 bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm">
                         <div class="flex justify-between items-center">
-                            <label class="text-base font-bold text-slate-900">4. Rating of our Discord server's usefulness / usage</label>
-                            <span id="val_discord" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
+                            <label class="text-base font-bold text-slate-900">4. Rating of communication and organization</label>
+                            <span id="val_comm" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
                         </div>
-                        <input type="range" name="score_discord" min="1" max="10" value="8" 
+                        <input type="range" name="score_comm" min="1" max="10" value="8" 
                             class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
-                            oninput="updateScore('discord', this.value)">
+                            oninput="updateScore('comm', this.value)">
                         <div class="flex justify-between text-xs font-bold text-slate-500">
                             <span>1 (Very poor)</span>
                             <span>5 (Average)</span>
                             <span>10 (Perfect)</span>
                         </div>
-                        <div id="exp_discord_container" class="hidden pt-3 border-t border-slate-200">
+                        <div id="exp_comm_container" class="hidden pt-3 border-t border-slate-200">
                             <label class="block text-sm font-bold text-amber-800 mb-2">Why this low rating (≤ 5)? Please explain:</label>
-                            <textarea name="expl_discord" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
+                            <textarea name="expl_comm" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
                         </div>
                     </div>
 
@@ -284,7 +284,7 @@
             <div class="pt-2 pb-8">
                 <button type="submit" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-extrabold px-6 py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3 text-base">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Validate and copy my responses</span>
+                    <span>Validate and save my responses</span>
                 </button>
             </div>
 
@@ -293,19 +293,15 @@
 
     <!-- RESULT MODAL -->
     <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
-                <h3 class="text-lg font-extrabold text-slate-900">Responses Ready!</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
+        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-md w-full p-6 shadow-2xl text-center space-y-4">
+            <div class="w-16 h-16 bg-green-100 border-2 border-green-300 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </div>
-            <p class="text-sm font-medium text-slate-700">Copy your responses below and paste them into the Krystal Power Discord channel.</p>
-            
-            <textarea id="outputSummary" readonly rows="9" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl p-3.5 text-xs text-slate-800 font-mono focus:outline-none shadow-inner"></textarea>
-
-            <div class="flex justify-end pt-2">
-                <button onclick="copyToClipboard()" class="w-full sm:w-auto bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-xl text-sm font-extrabold transition-all flex items-center justify-center space-x-2 shadow-md">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                    <span id="copyBtnText">Copy to clipboard</span>
+            <h3 class="text-xl font-extrabold text-slate-900">Responses Successfully Saved!</h3>
+            <p class="text-sm font-medium text-slate-600">Thank you! Your survey responses have been successfully recorded.</p>
+            <div class="pt-2">
+                <button onclick="closeModal()" class="w-full bg-purple-700 hover:bg-purple-800 text-white px-6 py-3.5 rounded-xl text-sm font-extrabold transition-all shadow-md">
+                    Close
                 </button>
             </div>
         </div>
@@ -318,7 +314,7 @@
                 <h3 class="text-lg font-extrabold text-slate-900">Administrator Access</h3>
                 <button onclick="closeAdminLogin()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
             </div>
-            <p class="text-sm font-medium text-slate-700">Enter the administrator password to view collected responses.</p>
+            <p class="text-sm font-medium text-slate-700">Enter the administrator password to view and manage collected responses.</p>
             <input type="password" id="adminPasswordInput" placeholder="Password" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus-ring text-base">
             <div id="adminErrorMsg" class="text-red-600 text-xs font-bold hidden">Incorrect password.</div>
             <div class="flex justify-end pt-2">
@@ -358,7 +354,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'krystal-power-survey-default';
         const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
@@ -379,16 +375,16 @@
         }
 
         window.saveSurveyToFirestore = async function(surveyData) {
-            // Local fallback storage (localStorage) to guarantee immediate working capability
+            const entryId = 'local_' + Date.now();
             try {
-                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en') || '[]');
+                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
                 const newEntry = {
-                    id: 'local_' + Date.now(),
+                    id: entryId,
                     ...surveyData,
                     timestamp: new Date().toISOString()
                 };
                 localResponses.unshift(newEntry);
-                localStorage.setItem('kp_survey_responses_en', JSON.stringify(localResponses));
+                localStorage.setItem('kp_survey_responses_en_clean', JSON.stringify(localResponses));
             } catch(e) {
                 console.error("LocalStorage error:", e);
             }
@@ -397,7 +393,7 @@
             try {
                 await auth.authStateReady?.() || new Promise(resolve => setTimeout(resolve, 500));
                 const userId = auth.currentUser?.uid || crypto.randomUUID();
-                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en');
+                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean');
                 await addDoc(colRef, {
                     ...surveyData,
                     userId: userId,
@@ -408,6 +404,32 @@
             }
         };
 
+        window.deleteResponse = async function(id) {
+            if (!confirm("Are you sure you want to delete this response?")) return;
+
+            // Remove from localStorage
+            try {
+                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
+                localResponses = localResponses.filter(item => item.id !== id);
+                localStorage.setItem('kp_survey_responses_en_clean', JSON.stringify(localResponses));
+            } catch(e) {
+                console.error("LocalStorage delete error:", e);
+            }
+
+            // Remove from Firestore if it's a valid Firebase doc id
+            if (db && !id.startsWith('local_')) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean', id);
+                    await deleteDoc(docRef);
+                } catch(err) {
+                    console.warn("Unable to delete from Firestore:", err.message);
+                }
+            }
+
+            // Refresh dashboard
+            window.fetchSurveyResponses();
+        };
+
         window.fetchSurveyResponses = async function() {
             const container = document.getElementById('responsesContainer');
             container.innerHTML = '<p class="text-slate-500 text-center py-8 font-medium">Loading responses...</p>';
@@ -416,7 +438,7 @@
 
             // Retrieve from localStorage
             try {
-                const localData = JSON.parse(localStorage.getItem('kp_survey_responses_en') || '[]');
+                const localData = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
                 docsList = [...localData];
             } catch(e) {
                 console.error("LocalStorage read error:", e);
@@ -425,7 +447,7 @@
             // Attempt from Firestore if available
             if (db) {
                 try {
-                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en');
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean');
                     const q = query(colRef);
                     const snapshot = await getDocs(q);
                     
@@ -452,11 +474,17 @@
             let html = '';
             docsList.forEach((item, index) => {
                 const dateFormatted = item.timestamp ? new Date(item.timestamp).toLocaleString('en-US') : 'Unknown date';
+                const safeId = item.id || ('local_' + index);
                 html += `
                     <div class="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 space-y-2 shadow-sm">
                         <div class="flex justify-between items-center border-b border-slate-200 pb-2">
                             <span class="font-extrabold text-purple-800 text-base">#${index + 1} - ${escapeHtml(item.pseudo || 'Anonymous')}</span>
-                            <span class="text-xs font-semibold text-slate-500">${dateFormatted}</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs font-semibold text-slate-500">${dateFormatted}</span>
+                                <button onclick="deleteResponse('${safeId}')" class="bg-red-100 hover:bg-red-200 text-red-700 text-xs font-bold px-2.5 py-1 rounded-lg transition-all border border-red-300 shadow-sm">
+                                    🗑️ Delete
+                                </button>
+                            </div>
                         </div>
                         <div class="text-xs font-mono bg-white p-3 rounded-lg border border-slate-200 whitespace-pre-line text-slate-800">${escapeHtml(item.summaryText || '')}</div>
                     </div>
@@ -533,8 +561,8 @@
                 if(formData.get('score_strategy') <= 5) summary += ` (Reason: ${formData.get('expl_strategy') || 'N/A'})`;
                 summary += `\n`;
 
-                summary += `• Discord: ${formData.get('score_discord')}/10`;
-                if(formData.get('score_discord') <= 5) summary += ` (Reason: ${formData.get('expl_discord') || 'N/A'})`;
+                summary += `• Communication & Organization: ${formData.get('score_comm')}/10`;
+                if(formData.get('score_comm') <= 5) summary += ` (Reason: ${formData.get('expl_comm') || 'N/A'})`;
                 summary += `\n`;
             }
 
@@ -554,7 +582,6 @@
                 summary += `${extraComments.trim()}\n`;
             }
 
-            document.getElementById('outputSummary').value = summary;
             document.getElementById('resultModal').classList.remove('hidden');
 
             if (typeof window.saveSurveyToFirestore === 'function') {
@@ -569,21 +596,6 @@
 
         function closeModal() {
             document.getElementById('resultModal').classList.add('hidden');
-        }
-
-        function copyToClipboard() {
-            const textarea = document.getElementById('outputSummary');
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                const btnText = document.getElementById('copyBtnText');
-                btnText.innerText = "Successfully copied!";
-                setTimeout(() => {
-                    btnText.innerText = "Copy to clipboard";
-                }, 2000);
-            } catch (err) {
-                console.error("Error during copy");
-            }
         }
 
         function openAdminModal() {
