@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey - Krystal Power (INT Meridian)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        kppurple: '#7c3aed',
+                        kpblue: '#2563eb'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .focus-ring:focus { outline: none; border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); }
+        input[type=range] { accent-color: #7c3aed; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col justify-between selection:bg-purple-500 selection:text-white">
+
+    <header class="bg-white border-b border-slate-300 py-4 px-6 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-2xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-purple-100 border-2 border-purple-300 flex items-center justify-center overflow-hidden shadow-sm">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2464/2464317.png" alt="Krystal Power Icon" class="w-7 h-7 object-contain" onerror="this.src='https://placehold.co/48x48/7c3aed/ffffff?text=KP'">
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 tracking-tight">Krystal Power</h1>
+                    <p class="text-sm text-slate-600 font-medium">Official Survey - INT Meridian</p>
+                </div>
+            </div>
+            <div>
+                <button onclick="openAdminModal()" class="text-xs font-bold bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl transition-all shadow-sm">
+                    🔒 Admin Area
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-2xl w-full mx-auto p-4 sm:p-6 my-6 flex-grow">
+        
+        <!-- Welcome Card -->
+        <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md mb-6">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">Give us your feedback!</h2>
+            <p class="text-slate-700 text-base leading-relaxed font-medium">
+                This questionnaire helps us evaluate the current round on <span class="text-blue-700 font-bold">INT Meridian</span> and prepare the future of the <span class="text-purple-700 font-bold">Krystal Power</span> community.
+            </p>
+        </div>
+
+        <form id="surveyForm" class="space-y-6">
+
+            <!-- Pseudo Section -->
+            <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-3">
+                <label for="pseudo" class="block text-base font-bold text-slate-900">
+                    What is your username? <span class="text-purple-600">*</span>
+                </label>
+                <input type="text" id="pseudo" required 
+                    class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 focus-ring text-base font-medium transition-all"
+                    placeholder="e.g., Robsi">
+            </div>
+
+            <!-- Current Game Status Section -->
+            <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-4">
+                <label class="block text-base font-bold text-slate-900">
+                    Are you currently playing with Krystal Power on INT Meridian? <span class="text-purple-600">*</span>
+                </label>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-purple-50 cursor-pointer transition-all has-[:checked]:border-purple-600 has-[:checked]:bg-purple-100 has-[:checked]:shadow-sm">
+                        <input type="radio" name="playCurrent" value="Yes" required class="peer sr-only" onchange="toggleCurrentGameSection(true)">
+                        <span class="text-base font-bold text-slate-800 peer-checked:text-purple-900">Yes</span>
+                    </label>
+                    <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-purple-50 cursor-pointer transition-all has-[:checked]:border-purple-600 has-[:checked]:bg-purple-100 has-[:checked]:shadow-sm">
+                        <input type="radio" name="playCurrent" value="No" required class="peer sr-only" onchange="toggleCurrentGameSection(false)">
+                        <span class="text-base font-bold text-slate-800 peer-checked:text-purple-900">No</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Current Game Questions (Conditional) -->
+            <div id="currentGameSection" class="space-y-4 hidden">
+                <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-6">
+                    <h3 class="text-lg font-extrabold text-slate-900 border-b-2 border-slate-200 pb-3">Current Round Evaluation</h3>
+
+                    <!-- Question 1: Round global -->
+                    <div class="space-y-3 bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <label class="text-base font-bold text-slate-900">1. Overall rating of the past round together</label>
+                            <span id="val_global" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
+                        </div>
+                        <input type="range" name="score_global" min="1" max="10" value="8" 
+                            class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
+                            oninput="updateScore('global', this.value)">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>1 (Very poor)</span>
+                            <span>5 (Average)</span>
+                            <span>10 (Perfect)</span>
+                        </div>
+                        <div id="exp_global_container" class="hidden pt-3 border-t border-slate-200">
+                            <label class="block text-sm font-bold text-amber-800 mb-2">Why this low rating (≤ 5)? Please explain:</label>
+                            <textarea name="expl_global" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Question 2: Deputes -->
+                    <div class="space-y-3 bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <label class="text-base font-bold text-slate-900">2. Rating of the deputies (Rob & deputies)</label>
+                            <span id="val_deputies" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
+                        </div>
+                        <input type="range" name="score_deputies" min="1" max="10" value="8" 
+                            class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
+                            oninput="updateScore('deputies', this.value)">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>1 (Very poor)</span>
+                            <span>5 (Average)</span>
+                            <span>10 (Perfect)</span>
+                        </div>
+                        <div id="exp_deputies_container" class="hidden pt-3 border-t border-slate-200">
+                            <label class="block text-sm font-bold text-amber-800 mb-2">Why this low rating (≤ 5)? Please explain:</label>
+                            <textarea name="expl_deputies" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Question 3: Strategie -->
+                    <div class="space-y-3 bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <label class="text-base font-bold text-slate-900">3. Rating of the strategy</label>
+                            <span id="val_strategy" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
+                        </div>
+                        <input type="range" name="score_strategy" min="1" max="10" value="8" 
+                            class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
+                            oninput="updateScore('strategy', this.value)">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>1 (Very poor)</span>
+                            <span>5 (Average)</span>
+                            <span>10 (Perfect)</span>
+                        </div>
+                        <div id="exp_strategy_container" class="hidden pt-3 border-t border-slate-200">
+                            <label class="block text-sm font-bold text-amber-800 mb-2">Why this low rating (≤ 5)? Please explain:</label>
+                            <textarea name="expl_strategy" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Question 4: Discord -->
+                    <div class="space-y-3 bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <label class="text-base font-bold text-slate-900">4. Rating of our Discord server's usefulness / usage</label>
+                            <span id="val_discord" class="text-purple-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">8 / 10</span>
+                        </div>
+                        <input type="range" name="score_discord" min="1" max="10" value="8" 
+                            class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
+                            oninput="updateScore('discord', this.value)">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>1 (Very poor)</span>
+                            <span>5 (Average)</span>
+                            <span>10 (Perfect)</span>
+                        </div>
+                        <div id="exp_discord_container" class="hidden pt-3 border-t border-slate-200">
+                            <label class="block text-sm font-bold text-amber-800 mb-2">Why this low rating (≤ 5)? Please explain:</label>
+                            <textarea name="expl_discord" rows="2" class="w-full bg-white border-2 border-amber-400 rounded-xl p-3 text-slate-900 text-sm font-medium focus-ring shadow-sm" placeholder="Specify negative points..."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Future Section -->
+            <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-5">
+                <h3 class="text-lg font-extrabold text-slate-900 border-b-2 border-slate-200 pb-3">Looking to the Future</h3>
+
+                <!-- Participation future -->
+                <div>
+                    <label class="block text-base font-bold text-slate-900 mb-3">
+                        Do you want to participate in the next game with Krystal Power? <span class="text-purple-600">*</span>
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-blue-50 cursor-pointer transition-all has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                            <input type="radio" name="participateNext" value="Yes" required class="peer sr-only" onchange="toggleFutureSection(true)">
+                            <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">Yes</span>
+                        </label>
+                        <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-blue-50 cursor-pointer transition-all has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                            <input type="radio" name="participateNext" value="No" required class="peer sr-only" onchange="toggleFutureSection(false)">
+                            <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Detailed Future Preferences (Hidden if 'No') -->
+                <div id="futureDetailsSection" class="space-y-4 hidden pt-4 border-t-2 border-slate-200">
+                    
+                    <!-- Monde de jeu -->
+                    <div class="space-y-2">
+                        <label class="block text-base font-bold text-slate-900">Which game world would you like?</label>
+                        <select name="gameWorld" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 font-medium focus-ring text-base shadow-sm">
+                            <option value="American Dream">American Dream</option>
+                            <option value="Stream Over Europe">Stream Over Europe</option>
+                            <option value="Classic">Classic</option>
+                            <option value="Event">Event</option>
+                        </select>
+                    </div>
+
+                    <!-- Vitesse -->
+                    <div class="space-y-2">
+                        <label class="block text-base font-bold text-slate-900">What speed?</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                                <input type="radio" name="gameSpeed" value="X1" class="peer sr-only" checked>
+                                <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">X1</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                                <input type="radio" name="gameSpeed" value="X2" class="peer sr-only">
+                                <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">X2</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Objectif personnel -->
+                    <div class="space-y-2">
+                        <label class="block text-base font-bold text-slate-900">What is your personal goal during this round?</label>
+                        <select name="personalGoal" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 font-medium focus-ring text-base shadow-sm">
+                            <option value="Top 1">Top 1</option>
+                            <option value="Top 10">Top 10</option>
+                            <option value="Top 20 to 70">Top 20 to 70</option>
+                            <option value="Top 100">Top 100</option>
+                        </select>
+                    </div>
+
+                    <!-- Exigence KP -->
+                    <div class="bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label class="text-base font-bold text-slate-900">Desired KP Requirement <span class="text-xs font-semibold text-slate-500 block sm:inline">(Currently 2.5 on INT Meridian)</span></label>
+                            <span id="val_exigence" class="text-blue-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">2.5 / 5</span>
+                        </div>
+                        <input type="range" name="exigenceKp" min="1" max="5" step="0.5" value="2.5" 
+                            class="w-full bg-slate-200 rounded-lg h-3 cursor-pointer"
+                            oninput="document.getElementById('val_exigence').innerText = this.value + ' / 5'">
+                        <div class="flex justify-between text-xs font-bold text-slate-500">
+                            <span>1 (Relaxed)</span>
+                            <span>3 (Moderate)</span>
+                            <span>5 (Extreme)</span>
+                        </div>
+                    </div>
+
+                    <!-- Inviter un ami -->
+                    <div class="space-y-2">
+                        <label class="block text-base font-bold text-slate-900">If we lack available players, do you think you could invite a friend?</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                                <input type="radio" name="inviteFriend" value="Yes" class="peer sr-only">
+                                <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">Yes</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
+                                <input type="radio" name="inviteFriend" value="No" class="peer sr-only" checked>
+                                <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Additional comments field -->
+            <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-3">
+                <label for="extraComments" class="block text-base font-bold text-slate-900">
+                    Do you have anything else to add (remarks, suggestions, ideas)? <span class="text-slate-500 font-normal text-sm">(Optional)</span>
+                </label>
+                <textarea id="extraComments" name="extraComments" rows="4" 
+                    class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl p-3.5 text-slate-900 text-base font-medium focus-ring shadow-sm"
+                    placeholder="Express yourself freely here..."></textarea>
+            </div>
+
+            <div class="pt-2 pb-8">
+                <button type="submit" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-extrabold px-6 py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3 text-base">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Validate and copy my responses</span>
+                </button>
+            </div>
+
+        </form>
+    </main>
+
+    <!-- RESULT MODAL -->
+    <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900">Responses Ready!</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
+            </div>
+            <p class="text-sm font-medium text-slate-700">Copy your responses below and paste them into the Krystal Power Discord channel.</p>
+            
+            <textarea id="outputSummary" readonly rows="9" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl p-3.5 text-xs text-slate-800 font-mono focus:outline-none shadow-inner"></textarea>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="copyToClipboard()" class="w-full sm:w-auto bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-xl text-sm font-extrabold transition-all flex items-center justify-center space-x-2 shadow-md">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span id="copyBtnText">Copy to clipboard</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900">Administrator Access</h3>
+                <button onclick="closeAdminLogin()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
+            </div>
+            <p class="text-sm font-medium text-slate-700">Enter the administrator password to view collected responses.</p>
+            <input type="password" id="adminPasswordInput" placeholder="Password" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus-ring text-base">
+            <div id="adminErrorMsg" class="text-red-600 text-xs font-bold hidden">Incorrect password.</div>
+            <div class="flex justify-end pt-2">
+                <button onclick="checkAdminPassword()" class="w-full bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-xl text-sm font-extrabold transition-all">
+                    Sign in
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD MODAL -->
+    <div id="adminDashboardModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
+                <div class="flex items-center space-x-2">
+                    <h3 class="text-lg font-extrabold text-slate-900">Admin Dashboard</h3>
+                    <span id="responseCountBadge" class="bg-purple-100 text-purple-800 text-xs font-black px-2.5 py-1 rounded-full border border-purple-300">0 responses</span>
+                </div>
+                <button onclick="closeAdminDashboard()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
+            </div>
+            <div id="responsesContainer" class="overflow-y-auto space-y-4 flex-grow pr-1">
+                <p class="text-slate-500 text-center py-8 font-medium">Loading responses...</p>
+            </div>
+            <div class="flex justify-end pt-2 border-t-2 border-slate-200">
+                <button onclick="closeAdminDashboard()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-xl text-sm font-bold transition-all">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-300 py-4 text-center text-sm font-semibold text-slate-600">
+        Krystal Power &copy; 2026 - All rights reserved
+    </footer>
+
+    <!-- Firebase SDK Imports & Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'krystal-power-survey-default';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+        let app, db, auth;
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : undefined;
+            if (token) {
+                signInWithCustomToken(auth, token).catch(() => signInAnonymously(auth));
+            } else {
+                signInAnonymously(auth).catch((err) => console.log("Auth error", err));
+            }
+        } catch(e) {
+            console.log("Firebase init skipped or failed", e);
+        }
+
+        window.saveSurveyToFirestore = async function(surveyData) {
+            // Local fallback storage (localStorage) to guarantee immediate working capability
+            try {
+                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en') || '[]');
+                const newEntry = {
+                    id: 'local_' + Date.now(),
+                    ...surveyData,
+                    timestamp: new Date().toISOString()
+                };
+                localResponses.unshift(newEntry);
+                localStorage.setItem('kp_survey_responses_en', JSON.stringify(localResponses));
+            } catch(e) {
+                console.error("LocalStorage error:", e);
+            }
+
+            if (!db) return;
+            try {
+                await auth.authStateReady?.() || new Promise(resolve => setTimeout(resolve, 500));
+                const userId = auth.currentUser?.uid || crypto.randomUUID();
+                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en');
+                await addDoc(colRef, {
+                    ...surveyData,
+                    userId: userId,
+                    timestamp: new Date().toISOString()
+                });
+            } catch (err) {
+                console.warn("Firestore not accessible, using local storage mode only:", err.message);
+            }
+        };
+
+        window.fetchSurveyResponses = async function() {
+            const container = document.getElementById('responsesContainer');
+            container.innerHTML = '<p class="text-slate-500 text-center py-8 font-medium">Loading responses...</p>';
+            
+            let docsList = [];
+
+            // Retrieve from localStorage
+            try {
+                const localData = JSON.parse(localStorage.getItem('kp_survey_responses_en') || '[]');
+                docsList = [...localData];
+            } catch(e) {
+                console.error("LocalStorage read error:", e);
+            }
+
+            // Attempt from Firestore if available
+            if (db) {
+                try {
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en');
+                    const q = query(colRef);
+                    const snapshot = await getDocs(q);
+                    
+                    snapshot.forEach(docSnap => {
+                        const data = docSnap.data();
+                        if (!docsList.some(item => item.timestamp === data.timestamp && item.pseudo === data.pseudo)) {
+                            docsList.push({ id: docSnap.id, ...data });
+                        }
+                    });
+                } catch(err) {
+                    console.warn("Unable to load from Firestore:", err.message);
+                }
+            }
+
+            docsList.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            document.getElementById('responseCountBadge').innerText = docsList.length + (docsList.length > 1 ? ' responses' : ' response');
+
+            if (docsList.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-center py-8 font-medium">No responses recorded yet.</p>';
+                return;
+            }
+
+            let html = '';
+            docsList.forEach((item, index) => {
+                const dateFormatted = item.timestamp ? new Date(item.timestamp).toLocaleString('en-US') : 'Unknown date';
+                html += `
+                    <div class="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 space-y-2 shadow-sm">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span class="font-extrabold text-purple-800 text-base">#${index + 1} - ${escapeHtml(item.pseudo || 'Anonymous')}</span>
+                            <span class="text-xs font-semibold text-slate-500">${dateFormatted}</span>
+                        </div>
+                        <div class="text-xs font-mono bg-white p-3 rounded-lg border border-slate-200 whitespace-pre-line text-slate-800">${escapeHtml(item.summaryText || '')}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        };
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+
+    <script>
+        function toggleCurrentGameSection(isPlaying) {
+            const section = document.getElementById('currentGameSection');
+            const inputs = section.querySelectorAll('textarea');
+            if (isPlaying === true || isPlaying === 'Yes') {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+                inputs.forEach(input => input.value = '');
+            }
+        }
+
+        function toggleFutureSection(isParticipating) {
+            const section = document.getElementById('futureDetailsSection');
+            if (isParticipating === true || isParticipating === 'Yes') {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        }
+
+        function updateScore(name, value) {
+            document.getElementById('val_' + name).innerText = value + ' / 10';
+            const expContainer = document.getElementById('exp_' + name + '_container');
+            const textarea = expContainer.querySelector('textarea');
+            
+            if (parseInt(value) <= 5) {
+                expContainer.classList.remove('hidden');
+                textarea.setAttribute('required', 'true');
+            } else {
+                expContainer.classList.add('hidden');
+                textarea.removeAttribute('required');
+                textarea.value = '';
+            }
+        }
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const pseudo = formData.get('pseudo');
+            const playCurrent = formData.get('playCurrent');
+            const participateNext = formData.get('participateNext');
+            const extraComments = formData.get('extraComments');
+
+            let summary = `📊 **KRYSTAL POWER SURVEY - INT MERIDIAN**\n`;
+            summary += `👤 **Username:** ${pseudo}\n`;
+            summary += `🎮 **Currently Playing:** ${playCurrent.toUpperCase()}\n`;
+
+            if (playCurrent === 'Yes') {
+                summary += `\n--- CURRENT EVALUATION ---\n`;
+                summary += `• Overall round: ${formData.get('score_global')}/10`;
+                if(formData.get('score_global') <= 5) summary += ` (Reason: ${formData.get('expl_global') || 'N/A'})`;
+                summary += `\n`;
+
+                summary += `• Deputies (Rob & deputies): ${formData.get('score_deputies')}/10`;
+                if(formData.get('score_deputies') <= 5) summary += ` (Reason: ${formData.get('expl_deputies') || 'N/A'})`;
+                summary += `\n`;
+
+                summary += `• Strategy: ${formData.get('score_strategy')}/10`;
+                if(formData.get('score_strategy') <= 5) summary += ` (Reason: ${formData.get('expl_strategy') || 'N/A'})`;
+                summary += `\n`;
+
+                summary += `• Discord: ${formData.get('score_discord')}/10`;
+                if(formData.get('score_discord') <= 5) summary += ` (Reason: ${formData.get('expl_discord') || 'N/A'})`;
+                summary += `\n`;
+            }
+
+            summary += `\n--- NEXT GAME ---\n`;
+            summary += `• Participate in next: ${participateNext.toUpperCase()}\n`;
+
+            if (participateNext === 'Yes') {
+                summary += `• Game world: ${formData.get('gameWorld')}\n`;
+                summary += `• Speed: ${formData.get('gameSpeed')}\n`;
+                summary += `• Personal goal: ${formData.get('personalGoal')}\n`;
+                summary += `• KP Requirement: ${formData.get('exigenceKp')}/5\n`;
+                summary += `• Invite a friend: ${formData.get('inviteFriend')}\n`;
+            }
+
+            if (extraComments && extraComments.trim() !== '') {
+                summary += `\n--- REMARKS & SUGGESTIONS ---\n`;
+                summary += `${extraComments.trim()}\n`;
+            }
+
+            document.getElementById('outputSummary').value = summary;
+            document.getElementById('resultModal').classList.remove('hidden');
+
+            if (typeof window.saveSurveyToFirestore === 'function') {
+                window.saveSurveyToFirestore({
+                    pseudo: pseudo,
+                    playCurrent: playCurrent,
+                    participateNext: participateNext,
+                    summaryText: summary
+                });
+            }
+        });
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+        }
+
+        function copyToClipboard() {
+            const textarea = document.getElementById('outputSummary');
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const btnText = document.getElementById('copyBtnText');
+                btnText.innerText = "Successfully copied!";
+                setTimeout(() => {
+                    btnText.innerText = "Copy to clipboard";
+                }, 2000);
+            } catch (err) {
+                console.error("Error during copy");
+            }
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('adminErrorMsg').classList.add('hidden');
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function checkAdminPassword() {
+            const pwd = document.getElementById('adminPasswordInput').value;
+            if (pwd === "K_Power") {
+                closeAdminLogin();
+                document.getElementById('adminDashboardModal').classList.remove('hidden');
+                if (typeof window.fetchSurveyResponses === 'function') {
+                    window.fetchSurveyResponses();
+                }
+            } else {
+                document.getElementById('adminErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('adminDashboardModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
