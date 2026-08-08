@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey - Krystal Power (INT Horizon)</title>
+    <title>Survey - Krystal Power (INT Meridian)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN pour les graphiques -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,7 +37,7 @@
                 </div>
                 <div>
                     <h1 class="font-extrabold text-lg text-slate-900 tracking-tight">Krystal Power</h1>
-                    <p class="text-sm text-slate-600 font-medium">Official Survey - INT Horizon</p>
+                    <p class="text-sm text-slate-600 font-medium">Official Survey - INT Meridian</p>
                 </div>
             </div>
             <div>
@@ -56,7 +54,7 @@
         <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md mb-6">
             <h2 class="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">Give us your feedback!</h2>
             <p class="text-slate-700 text-base leading-relaxed font-medium">
-                This questionnaire helps us evaluate the current round on <span class="text-blue-700 font-bold">INT Horizon</span> and prepare the future of the <span class="text-purple-700 font-bold">Krystal Power</span> community.
+                This questionnaire helps us evaluate the current round on <span class="text-blue-700 font-bold">INT Meridian</span> and prepare the future of the <span class="text-purple-700 font-bold">Krystal Power</span> community.
             </p>
         </div>
 
@@ -75,7 +73,7 @@
             <!-- Current Game Status Section -->
             <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-4">
                 <label class="block text-base font-bold text-slate-900">
-                    Are you currently playing with Krystal Power on INT Horizon? <span class="text-purple-600">*</span>
+                    Are you currently playing with Krystal Power on INT Meridian? <span class="text-purple-600">*</span>
                 </label>
                 <div class="grid grid-cols-2 gap-4">
                     <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-purple-50 cursor-pointer transition-all has-[:checked]:border-purple-600 has-[:checked]:bg-purple-100 has-[:checked]:shadow-sm">
@@ -205,7 +203,6 @@
                     <div class="space-y-2">
                         <label class="block text-base font-bold text-slate-900">Which game world would you like?</label>
                         <select name="gameWorld" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 font-medium focus-ring text-base shadow-sm">
-                            <option value="" disabled selected>Choose a world...</option>
                             <option value="American Dream">American Dream</option>
                             <option value="Stream Over Europe">Stream Over Europe</option>
                             <option value="Classic">Classic</option>
@@ -218,7 +215,7 @@
                         <label class="block text-base font-bold text-slate-900">What speed?</label>
                         <div class="grid grid-cols-2 gap-4">
                             <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
-                                <input type="radio" name="gameSpeed" value="X1" class="peer sr-only">
+                                <input type="radio" name="gameSpeed" value="X1" class="peer sr-only" checked>
                                 <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">X1</span>
                             </label>
                             <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
@@ -232,7 +229,6 @@
                     <div class="space-y-2">
                         <label class="block text-base font-bold text-slate-900">What is your personal goal during this round?</label>
                         <select name="personalGoal" class="w-full bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-900 font-medium focus-ring text-base shadow-sm">
-                            <option value="" disabled selected>Choose a goal...</option>
                             <option value="Top 1">Top 1</option>
                             <option value="Top 10">Top 10</option>
                             <option value="Top 20 to 70">Top 20 to 70</option>
@@ -243,7 +239,7 @@
                     <!-- Exigence KP -->
                     <div class="bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm space-y-3">
                         <div class="flex justify-between items-center">
-                            <label class="text-base font-bold text-slate-900">Desired KP Requirement <span class="text-xs font-semibold text-slate-500 block sm:inline">(Currently 2.5 on INT Horizon)</span></label>
+                            <label class="text-base font-bold text-slate-900">Desired KP Requirement <span class="text-xs font-semibold text-slate-500 block sm:inline">(Currently 2.5 on INT Meridian)</span></label>
                             <span id="val_exigence" class="text-blue-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">2.5 / 5</span>
                         </div>
                         <input type="range" name="exigenceKp" min="1" max="5" step="0.5" value="2.5" 
@@ -265,7 +261,7 @@
                                 <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">Yes</span>
                             </label>
                             <label class="flex items-center justify-center p-3.5 rounded-xl border-2 border-slate-300 bg-slate-50 cursor-pointer hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-100 has-[:checked]:shadow-sm">
-                                <input type="radio" name="inviteFriend" value="No" class="peer sr-only">
+                                <input type="radio" name="inviteFriend" value="No" class="peer sr-only" checked>
                                 <span class="text-base font-bold text-slate-800 peer-checked:text-blue-900">No</span>
                             </label>
                         </div>
@@ -331,28 +327,18 @@
 
     <!-- ADMIN DASHBOARD MODAL -->
     <div id="adminDashboardModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-4xl w-full p-6 shadow-2xl space-y-4 max-h-[92vh] flex flex-col">
+        <div class="bg-white border-2 border-slate-300 rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
-                <div class="flex items-center space-x-3">
-                    <h3 class="text-xl font-extrabold text-slate-900">Admin Dashboard</h3>
-                    <span id="responseCountBadge" class="bg-purple-100 text-purple-800 text-xs font-black px-3 py-1 rounded-full border border-purple-300">0 responses</span>
+                <div class="flex items-center space-x-2">
+                    <h3 class="text-lg font-extrabold text-slate-900">Admin Dashboard</h3>
+                    <span id="responseCountBadge" class="bg-purple-100 text-purple-800 text-xs font-black px-2.5 py-1 rounded-full border border-purple-300">0 responses</span>
                 </div>
                 <button onclick="closeAdminDashboard()" class="text-slate-400 hover:text-slate-700 text-2xl font-black px-2 py-1">&times;</button>
             </div>
-
-            <!-- Onglets d'administration -->
-            <div class="flex space-x-2 border-b border-slate-200 pb-2">
-                <button onclick="switchAdminTab('overview')" id="tabBtn-overview" class="px-4 py-2 text-sm font-extrabold rounded-lg bg-purple-700 text-white transition-all">📈 Overview & Charts</button>
-                <button onclick="switchAdminTab('questions')" id="tabBtn-questions" class="px-4 py-2 text-sm font-extrabold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">❓ View by Question</button>
-                <button onclick="switchAdminTab('raw')" id="tabBtn-raw" class="px-4 py-2 text-sm font-extrabold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">📄 Raw Responses</button>
-            </div>
-
-            <!-- Contenu des onglets -->
-            <div id="adminTabContent" class="overflow-y-auto space-y-4 flex-grow pr-1">
+            <div id="responsesContainer" class="overflow-y-auto space-y-4 flex-grow pr-1">
                 <p class="text-slate-500 text-center py-8 font-medium">Loading responses...</p>
             </div>
-
-            <div class="flex justify-end pt-3 border-t-2 border-slate-200">
+            <div class="flex justify-end pt-2 border-t-2 border-slate-200">
                 <button onclick="closeAdminDashboard()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-6 py-2.5 rounded-xl text-sm font-bold transition-all">
                     Close
                 </button>
@@ -391,14 +377,14 @@
         window.saveSurveyToFirestore = async function(surveyData) {
             const entryId = 'local_' + Date.now();
             try {
-                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean_v3') || '[]');
+                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
                 const newEntry = {
                     id: entryId,
                     ...surveyData,
                     timestamp: new Date().toISOString()
                 };
                 localResponses.unshift(newEntry);
-                localStorage.setItem('kp_survey_responses_en_clean_v3', JSON.stringify(localResponses));
+                localStorage.setItem('kp_survey_responses_en_clean', JSON.stringify(localResponses));
             } catch(e) {
                 console.error("LocalStorage error:", e);
             }
@@ -407,7 +393,7 @@
             try {
                 await auth.authStateReady?.() || new Promise(resolve => setTimeout(resolve, 500));
                 const userId = auth.currentUser?.uid || crypto.randomUUID();
-                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean_v3');
+                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean');
                 await addDoc(colRef, {
                     ...surveyData,
                     userId: userId,
@@ -421,39 +407,47 @@
         window.deleteResponse = async function(id) {
             if (!confirm("Are you sure you want to delete this response?")) return;
 
+            // Remove from localStorage
             try {
-                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean_v3') || '[]');
+                let localResponses = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
                 localResponses = localResponses.filter(item => item.id !== id);
-                localStorage.setItem('kp_survey_responses_en_clean_v3', JSON.stringify(localResponses));
+                localStorage.setItem('kp_survey_responses_en_clean', JSON.stringify(localResponses));
             } catch(e) {
                 console.error("LocalStorage delete error:", e);
             }
 
+            // Remove from Firestore if it's a valid Firebase doc id
             if (db && !id.startsWith('local_')) {
                 try {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean_v3', id);
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean', id);
                     await deleteDoc(docRef);
                 } catch(err) {
                     console.warn("Unable to delete from Firestore:", err.message);
                 }
             }
 
+            // Refresh dashboard
             window.fetchSurveyResponses();
         };
 
         window.fetchSurveyResponses = async function() {
+            const container = document.getElementById('responsesContainer');
+            container.innerHTML = '<p class="text-slate-500 text-center py-8 font-medium">Loading responses...</p>';
+            
             let docsList = [];
 
+            // Retrieve from localStorage
             try {
-                const localData = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean_v3') || '[]');
+                const localData = JSON.parse(localStorage.getItem('kp_survey_responses_en_clean') || '[]');
                 docsList = [...localData];
             } catch(e) {
                 console.error("LocalStorage read error:", e);
             }
 
+            // Attempt from Firestore if available
             if (db) {
                 try {
-                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean_v3');
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'survey_responses_en_clean');
                     const q = query(colRef);
                     const snapshot = await getDocs(q);
                     
@@ -469,198 +463,38 @@
             }
 
             docsList.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            window.cachedResponses = docsList;
 
             document.getElementById('responseCountBadge').innerText = docsList.length + (docsList.length > 1 ? ' responses' : ' response');
-            renderActiveAdminTab();
-        };
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
-
-        window.cachedResponses = [];
-        window.currentAdminTab = 'overview';
-
-        window.switchAdminTab = function(tab) {
-            window.currentAdminTab = tab;
-            ['overview', 'questions', 'raw'].forEach(t => {
-                const btn = document.getElementById('tabBtn-' + t);
-                if (t === tab) {
-                    btn.className = "px-4 py-2 text-sm font-extrabold rounded-lg bg-purple-700 text-white transition-all";
-                } else {
-                    btn.className = "px-4 py-2 text-sm font-extrabold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all";
-                }
-            });
-            renderActiveAdminTab();
-        };
-
-        function renderActiveAdminTab() {
-            const container = document.getElementById('adminTabContent');
-            const docsList = window.cachedResponses;
 
             if (docsList.length === 0) {
                 container.innerHTML = '<p class="text-slate-500 text-center py-8 font-medium">No responses recorded yet.</p>';
                 return;
             }
 
-            if (window.currentAdminTab === 'overview') {
-                let playingYes = docsList.filter(d => d.playCurrent === 'Yes').length;
-                let partNextYes = docsList.filter(d => d.participateNext === 'Yes').length;
-                
-                let sumGlobal = 0, countGlobal = 0;
-                let sumDep = 0, countDep = 0;
-                let sumStrat = 0, countStrat = 0;
-                let sumComm = 0, countComm = 0;
-
-                docsList.forEach(d => {
-                    if (d.score_global) { sumGlobal += Number(d.score_global); countGlobal++; }
-                    if (d.score_deputies) { sumDep += Number(d.score_deputies); countDep++; }
-                    if (d.score_strategy) { sumStrat += Number(d.score_strategy); countStrat++; }
-                    if (d.score_comm) { sumComm += Number(d.score_comm); countComm++; }
-                });
-
-                container.innerHTML = `
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <div class="bg-purple-50 border-2 border-purple-200 p-4 rounded-xl text-center">
-                                <span class="block text-2xl font-black text-purple-800">${docsList.length}</span>
-                                <span class="text-xs font-bold text-slate-600">Total Responses</span>
-                            </div>
-                            <div class="bg-blue-50 border-2 border-blue-200 p-4 rounded-xl text-center">
-                                <span class="block text-2xl font-black text-blue-800">${Math.round((playingYes / docsList.length) * 100)}%</span>
-                                <span class="text-xs font-bold text-slate-600">Playing Now</span>
-                            </div>
-                            <div class="bg-emerald-50 border-2 border-emerald-200 p-4 rounded-xl text-center">
-                                <span class="block text-2xl font-black text-emerald-800">${Math.round((partNextYes / docsList.length) * 100)}%</span>
-                                <span class="text-xs font-bold text-slate-600">Next Round Yes</span>
-                            </div>
-                            <div class="bg-amber-50 border-2 border-amber-200 p-4 rounded-xl text-center">
-                                <span class="block text-2xl font-black text-amber-800">${countGlobal ? (sumGlobal / countGlobal).toFixed(1) : 'N/A'}/10</span>
-                                <span class="text-xs font-bold text-slate-600">Avg Global Score</span>
+            let html = '';
+            docsList.forEach((item, index) => {
+                const dateFormatted = item.timestamp ? new Date(item.timestamp).toLocaleString('en-US') : 'Unknown date';
+                const safeId = item.id || ('local_' + index);
+                html += `
+                    <div class="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 space-y-2 shadow-sm">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span class="font-extrabold text-purple-800 text-base">#${index + 1} - ${escapeHtml(item.pseudo || 'Anonymous')}</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs font-semibold text-slate-500">${dateFormatted}</span>
+                                <button onclick="deleteResponse('${safeId}')" class="bg-red-100 hover:bg-red-200 text-red-700 text-xs font-bold px-2.5 py-1 rounded-lg transition-all border border-red-300 shadow-sm">
+                                    🗑️ Delete
+                                </button>
                             </div>
                         </div>
-
-                        <!-- Graphique Chart.js -->
-                        <div class="bg-slate-50 border-2 border-slate-300 p-5 rounded-2xl shadow-sm">
-                            <h4 class="font-extrabold text-slate-900 mb-4">Average Ratings Overview</h4>
-                            <div class="relative h-64 w-full">
-                                <canvas id="scoresChart"></canvas>
-                            </div>
-                        </div>
+                        <div class="text-xs font-mono bg-white p-3 rounded-lg border border-slate-200 whitespace-pre-line text-slate-800">${escapeHtml(item.summaryText || '')}</div>
                     </div>
                 `;
+            });
+            container.innerHTML = html;
+        };
 
-                setTimeout(() => {
-                    const ctx = document.getElementById('scoresChart').getContext('2d');
-                    if (window.myChart) window.myChart.destroy();
-                    window.myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Global Round', 'Deputies', 'Strategy', 'Communication'],
-                            datasets: [{
-                                label: 'Average Score (/10)',
-                                data: [
-                                    countGlobal ? (sumGlobal / countGlobal).toFixed(1) : 0,
-                                    countDep ? (sumDep / countDep).toFixed(1) : 0,
-                                    countStrat ? (sumStrat / countStrat).toFixed(1) : 0,
-                                    countComm ? (sumComm / countComm).toFixed(1) : 0
-                                ],
-                                backgroundColor: ['#7c3aed', '#2563eb', '#0d9488', '#d97706'],
-                                borderWidth: 2,
-                                borderRadius: 8
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            scales: {
-                                y: { beginAtZero: true, max: 10 }
-                            }
-                        }
-                    });
-                }, 50);
-
-            } else if (window.currentAdminTab === 'questions') {
-                let worldsCount = {};
-                let goalsCount = {};
-                let commentsList = [];
-
-                docsList.forEach(d => {
-                    if (d.gameWorld && d.gameWorld !== 'N/A') worldsCount[d.gameWorld] = (worldsCount[d.gameWorld] || 0) + 1;
-                    if (d.personalGoal && d.personalGoal !== 'N/A') goalsCount[d.personalGoal] = (goalsCount[d.personalGoal] || 0) + 1;
-                    if (d.extraComments) commentsList.push({ pseudo: d.pseudo, comment: d.extraComments });
-                });
-
-                let html = '<div class="space-y-4">';
-                
-                html += `
-                    <div class="bg-slate-50 border-2 border-slate-300 p-4 rounded-xl space-y-2">
-                        <h4 class="font-extrabold text-slate-900 text-base">🌍 Preferred Game Worlds (Among participants)</h4>
-                        <div class="grid grid-cols-2 gap-2 text-sm font-semibold">
-                `;
-                if (Object.keys(worldsCount).length === 0) {
-                    html += `<div class="col-span-2 text-slate-500 italic text-sm">No game world selections recorded.</div>`;
-                } else {
-                    for (let [world, count] of Object.entries(worldsCount)) {
-                        html += `<div class="bg-white p-2.5 rounded-lg border border-slate-200 flex justify-between"><span>${world}</span><span class="font-bold text-purple-700">${count}</span></div>`;
-                    }
-                }
-                html += `</div></div>`;
-
-                html += `
-                    <div class="bg-slate-50 border-2 border-slate-300 p-4 rounded-xl space-y-2">
-                        <h4 class="font-extrabold text-slate-900 text-base">🎯 Personal Goals (Among participants)</h4>
-                        <div class="grid grid-cols-2 gap-2 text-sm font-semibold">
-                `;
-                if (Object.keys(goalsCount).length === 0) {
-                    html += `<div class="col-span-2 text-slate-500 italic text-sm">No personal goal selections recorded.</div>`;
-                } else {
-                    for (let [goal, count] of Object.entries(goalsCount)) {
-                        html += `<div class="bg-white p-2.5 rounded-lg border border-slate-200 flex justify-between"><span>${goal}</span><span class="font-bold text-blue-700">${count}</span></div>`;
-                    }
-                }
-                html += `</div></div>`;
-
-                html += `
-                    <div class="bg-slate-50 border-2 border-slate-300 p-4 rounded-xl space-y-2">
-                        <h4 class="font-extrabold text-slate-900 text-base">💬 Free Remarks & Suggestions (${commentsList.length})</h4>
-                `;
-                if (commentsList.length === 0) {
-                    html += `<p class="text-sm text-slate-500 italic">No comments provided yet.</p>`;
-                } else {
-                    commentsList.forEach(c => {
-                        html += `<div class="bg-white p-3 rounded-lg border border-slate-200 text-sm space-y-1"><span class="font-bold text-purple-800">${escapeHtml(c.pseudo)}:</span> <p class="text-slate-700 font-medium">${escapeHtml(c.comment)}</p></div>`;
-                    });
-                }
-                html += `</div></div>`;
-
-                container.innerHTML = html;
-
-            } else if (window.currentAdminTab === 'raw') {
-                let html = '<div class="space-y-4">';
-                docsList.forEach((item, index) => {
-                    const dateFormatted = item.timestamp ? new Date(item.timestamp).toLocaleString('en-US') : 'Unknown date';
-                    const safeId = item.id || ('local_' + index);
-                    html += `
-                        <div class="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 space-y-2 shadow-sm">
-                            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                                <span class="font-extrabold text-purple-800 text-base">#${index + 1} - ${escapeHtml(item.pseudo || 'Anonymous')}</span>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-xs font-semibold text-slate-500">${dateFormatted}</span>
-                                    <button onclick="deleteResponse('${safeId}')" class="bg-red-100 hover:bg-red-200 text-red-700 text-xs font-bold px-2.5 py-1 rounded-lg transition-all border border-red-300 shadow-sm">
-                                        🗑️ Delete
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="text-xs font-mono bg-white p-3 rounded-lg border border-slate-200 whitespace-pre-line text-slate-800">${escapeHtml(item.summaryText || '')}</div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-                container.innerHTML = html;
-            }
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
     </script>
 
@@ -678,12 +512,10 @@
 
         function toggleFutureSection(isParticipating) {
             const section = document.getElementById('futureDetailsSection');
-            const selects = section.querySelectorAll('select');
             if (isParticipating === true || isParticipating === 'Yes') {
                 section.classList.remove('hidden');
             } else {
                 section.classList.add('hidden');
-                selects.forEach(sel => sel.value = ""); // Réinitialise proprement les selects
             }
         }
 
@@ -702,7 +534,7 @@
             }
         }
 
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+        document.getElementById('surveyForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
@@ -711,25 +543,11 @@
             const participateNext = formData.get('participateNext');
             const extraComments = formData.get('extraComments');
 
-            let summary = `📊 **KRYSTAL POWER SURVEY - INT HORIZON**\n`;
+            let summary = `📊 **KRYSTAL POWER SURVEY - INT MERIDIAN**\n`;
             summary += `👤 **Username:** ${pseudo}\n`;
             summary += `🎮 **Currently Playing:** ${playCurrent.toUpperCase()}\n`;
 
-            let surveyPayload = {
-                pseudo: pseudo,
-                playCurrent: playCurrent,
-                participateNext: participateNext,
-                extraComments: extraComments,
-                gameWorld: participateNext === 'Yes' ? formData.get('gameWorld') : 'N/A',
-                personalGoal: participateNext === 'Yes' ? formData.get('personalGoal') : 'N/A'
-            };
-
             if (playCurrent === 'Yes') {
-                surveyPayload.score_global = formData.get('score_global');
-                surveyPayload.score_deputies = formData.get('score_deputies');
-                surveyPayload.score_strategy = formData.get('score_strategy');
-                surveyPayload.score_comm = formData.get('score_comm');
-
                 summary += `\n--- CURRENT EVALUATION ---\n`;
                 summary += `• Overall round: ${formData.get('score_global')}/10`;
                 if(formData.get('score_global') <= 5) summary += ` (Reason: ${formData.get('expl_global') || 'N/A'})`;
@@ -764,13 +582,16 @@
                 summary += `${extraComments.trim()}\n`;
             }
 
-            surveyPayload.summaryText = summary;
+            if (typeof window.saveSurveyToFirestore === 'function') {
+                await window.saveSurveyToFirestore({
+                    pseudo: pseudo,
+                    playCurrent: playCurrent,
+                    participateNext: participateNext,
+                    summaryText: summary
+                });
+            }
 
             document.getElementById('resultModal').classList.remove('hidden');
-
-            if (typeof window.saveSurveyToFirestore === 'function') {
-                window.saveSurveyToFirestore(surveyPayload);
-            }
         });
 
         function closeModal() {
@@ -789,14 +610,14 @@
 
         function checkAdminPassword() {
             const pwd = document.getElementById('adminPasswordInput').value;
-            if (pwd === "1411") {
+            if (pwd === "K_Power") {
                 closeAdminLogin();
                 document.getElementById('adminDashboardModal').classList.remove('hidden');
                 if (typeof window.fetchSurveyResponses === 'function') {
                     window.fetchSurveyResponses();
                 }
             } else {
-                document.getElementById('adminErrorMsg').classList.remove('hidden');
+                document.getElementById('adminErrorMsg').classList.add('hidden');
             }
         }
 
