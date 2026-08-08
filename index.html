@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey - Krystal Power (INT Meridian)</title>
+    <title>Survey - Krystal Power (INT Horizon)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js CDN pour les graphiques -->
@@ -56,7 +56,7 @@
         <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md mb-6">
             <h2 class="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">Give us your feedback!</h2>
             <p class="text-slate-700 text-base leading-relaxed font-medium">
-                This questionnaire helps us evaluate the current round on <span class="text-blue-700 font-bold">INT Meridian</span> and prepare the future of the <span class="text-purple-700 font-bold">Krystal Power</span> community.
+                This questionnaire helps us evaluate the current round on <span class="text-blue-700 font-bold">INT Horizon</span> and prepare the future of the <span class="text-purple-700 font-bold">Krystal Power</span> community.
             </p>
         </div>
 
@@ -75,7 +75,7 @@
             <!-- Current Game Status Section -->
             <div class="bg-white border-2 border-slate-300 rounded-2xl p-6 shadow-md space-y-4">
                 <label class="block text-base font-bold text-slate-900">
-                    Are you currently playing with Krystal Power on INT Meridian? <span class="text-purple-600">*</span>
+                    Are you currently playing with Krystal Power on INT Horizon? <span class="text-purple-600">*</span>
                 </label>
                 <div class="grid grid-cols-2 gap-4">
                     <label class="flex items-center justify-center p-4 rounded-xl border-2 border-slate-300 bg-slate-50 hover:bg-purple-50 cursor-pointer transition-all has-[:checked]:border-purple-600 has-[:checked]:bg-purple-100 has-[:checked]:shadow-sm">
@@ -243,7 +243,7 @@
                     <!-- Exigence KP -->
                     <div class="bg-slate-50 p-5 rounded-xl border-2 border-slate-300 shadow-sm space-y-3">
                         <div class="flex justify-between items-center">
-                            <label class="text-base font-bold text-slate-900">Desired KP Requirement <span class="text-xs font-semibold text-slate-500 block sm:inline">(Currently 2.5 on INT Meridian)</span></label>
+                            <label class="text-base font-bold text-slate-900">Desired KP Requirement <span class="text-xs font-semibold text-slate-500 block sm:inline">(Currently 2.5 on INT Horizon)</span></label>
                             <span id="val_exigence" class="text-blue-800 font-extrabold bg-white px-3 py-1 rounded-lg text-sm border-2 border-slate-300 shadow-sm">2.5 / 5</span>
                         </div>
                         <input type="range" name="exigenceKp" min="1" max="5" step="0.5" value="2.5" 
@@ -711,7 +711,7 @@
             const participateNext = formData.get('participateNext');
             const extraComments = formData.get('extraComments');
 
-            let summary = `📊 **KRYSTAL POWER SURVEY - INT MERIDIAN**\n`;
+            let summary = `📊 **KRYSTAL POWER SURVEY - INT HORIZON**\n`;
             summary += `👤 **Username:** ${pseudo}\n`;
             summary += `🎮 **Currently Playing:** ${playCurrent.toUpperCase()}\n`;
 
